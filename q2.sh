@@ -13,16 +13,16 @@ cat<< EOF > $tex_file
 
 \begin{document}
 \maketitle
-\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\begin{longtable}{|c|c|c|c|c|c|c|c|}
 \caption{Heart Table} \\\\
 \hline
 EOF
 
-while IFS=',' read -r age sex cp trestbps chol fbs restecg thalach exang oldpeak slope ca thal target; do
-    if [ "$age" = "age" ]; then
-        echo "\\textbf{$age} & \\textbf{$sex} & \\textbf{$cp} & \\textbf{$trestbps} & \\textbf{$chol} & \\textbf{$fbs} & \\textbf{$restecg} & \\textbf{$thalach} & \\textbf{$exang} & \\textbf{$oldpeak} & \\textbf{$slope} & \\textbf{$ca} & \\textbf{$thal} & \\textbf{$target} \\\\ \hline" >> $tex_file
+while IFS=',' read -r Age Sex ChestPain BloodPressure Cholesterol BloodSugar MaxHeartRate HeartDisease; do
+    if [ "$age" = "Age" ]; then
+        echo "\\textbf{$Age} & \\textbf{$Sex} & \\textbf{$ChestPain} & \\textbf{$BloodPressure} & \\textbf{$Cholesterol} & \\textbf{$BloodSugar} & \\textbf{$MaxHeartRate} & \\textbf{$HeartDisease} \\\\ \hline" >> $tex_file
     else
-        echo "$age & $sex & $cp & $trestbps & $chol & $fbs & $restecg & $thalach & $exang & $oldpeak & $slope & $ca & $thal & $target \\\\ \hline" >> $tex_file
+        echo "$Age & $Sex & $ChestPain & $BloodPressure & $Cholesterol & $BloodSugar & $MaxHeartRate & $HeartDisease \\\\ \hline" >> $tex_file
     fi
 done < "$csv_file"
 
